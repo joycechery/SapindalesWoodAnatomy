@@ -1,7 +1,7 @@
 ###correlation evolution
 
 setwd("~/Desktop/")
-tree<-read.nexus("Sap_part_uni_rel_20M2k_comb20_namesAdjusted_2.tre")
+tree<-read.nexus("Tree.tre")
 
 # upload data
 data  <- read.csv("IntervesselPitsxTyloses_discrete.csv", row.names = 1)
