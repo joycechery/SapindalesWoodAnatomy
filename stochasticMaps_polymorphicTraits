@@ -30,12 +30,12 @@ ard$index.matrix
 ard$data
 
 # stochastic mapping
-simmap.trees <- make.simmap(pruned_tree, ard$data, model = ard$index.matrix, pi = "estimated", nsim=100)
+simmap.trees <- make.simmap(pruned_tree, ard$data, model = ard$index.matrix, pi = "estimated", nsim=100) #use best fit model determined by chi-square test
 
 # make colors
 colrs <- c("dodgerblue4", "orangered3",  "olivedrab4", "grey")
-cols  <- colrs[1:nrow(er$index.matrix)]
-names(cols) <- rownames(er$index.matrix)
+cols  <- colrs[1:nrow(ard$index.matrix)]
+names(cols) <- rownames(ard$index.matrix)
 
 # plot the maps
 densityTree(simmap.trees,
