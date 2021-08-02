@@ -1,6 +1,6 @@
 library(phytools)
 library(grDevices)
-setwd("~/Desktop/SAPINDALES/05.03-30.21/")
+setwd("~/Desktop/)
 tree<-read.nexus("Sap_part_uni_rel_20M2k_comb20_namesAdjusted_2.tre")
 
 # data
@@ -30,7 +30,7 @@ ard$index.matrix
 ard$data
 
 # stochastic mapping
-simmap.trees <- make.simmap(pruned_tree, ard$data, model = ard$index.matrix, pi = "estimated", nsim=100) #use best fit model determined by chi-square test
+simmap.trees <- make.simmap(pruned_tree, ard$data, model = ard$index.matrix, pi = "estimated", nsim=100)
 
 # make colors
 colrs <- c("dodgerblue4", "orangered3",  "olivedrab4", "grey")
