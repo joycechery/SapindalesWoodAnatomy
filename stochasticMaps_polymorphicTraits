@@ -1,0 +1,50 @@
+library(phytools)
+library(grDevices)
+setwd("~/Desktop/SAPINDALES/05.03-30.21/")
+tree<-read.nexus("Sap_part_uni_rel_20M2k_comb20_namesAdjusted_2.tre")
+
+# data
+data  <- read.csv("Table_vFinal.csv", row.names = 1)
+datum <- as.data.frame(cbind(rownames(data), data[,4]), row.names = FALSE)
+datum <- datum[complete.cases(datum), ]
+
+# reformat data
+species <- datum$V1
+datas <- datum$V2
+names(datas) <- species
+
+# drop tips
+pruned_tree <- keep.tip(tree, species)
+
+# model fitting
+er  <- fitpolyMk(pruned_tree, datas, model="ER",  ordered=TRUE, pi="estimated")
+ard <- fitpolyMk(pruned_tree, datas, model="ARD", ordered=TRUE, pi="estimated")
+
+# chi-square test
+er_num_params  <- 1
+ard_num_params <- sum(ard$index.matrix != 0)
+
+1 - pchisq(2*abs(ard$logLik- er$logLik), ard_num_params - er_num_params) # if p is not < .05 then selecr ER model
+
+ard$index.matrix
+ard$data
+
+# stochastic mapping
+simmap.trees <- make.simmap(pruned_tree, ard$data, model = ard$index.matrix, pi = "estimated", nsim=100)
+
+# make colors
+colrs <- c("dodgerblue4", "orangered3",  "olivedrab4", "grey")
+cols  <- colrs[1:nrow(er$index.matrix)]
+names(cols) <- rownames(er$index.matrix)
+
+# plot the maps
+densityTree(simmap.trees,
+            method = "plotSimmap",
+            lwd = 3,
+            nodes = "intermediate",
+            colors = cols,
+            compute.consensus=FALSE,
+            fsize=.55, show.axis = F, direction="lefttwards", alpha = 0.5)
+
+title(main="Character Title Here", adj = .02, line= -1)
+add.simmap.legend(colors=cols, prompt=FALSE,x=110,y=165)
