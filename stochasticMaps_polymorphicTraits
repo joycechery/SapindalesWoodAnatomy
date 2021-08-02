@@ -1,10 +1,10 @@
 library(phytools)
 library(grDevices)
 setwd("~/Desktop/)
-tree<-read.nexus("Sap_part_uni_rel_20M2k_comb20_namesAdjusted_2.tre")
+tree<-read.nexus("Tree.tre")
 
-# data
-data  <- read.csv("Table_vFinal.csv", row.names = 1)
+# upload data 
+data  <- read.csv("DataTable.csv", row.names = 1) 
 datum <- as.data.frame(cbind(rownames(data), data[,4]), row.names = FALSE)
 datum <- datum[complete.cases(datum), ]
 
