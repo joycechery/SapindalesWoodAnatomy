@@ -1,10 +1,10 @@
 library(phytools)
 library(grDevices)
-setwd("~/Desktop/SAPINDALES/")
-tree<-read.nexus("Sap_part_uni_rel_20M2k_comb20_namesAdjusted_2.tre")
+setwd("~/Desktop/")
+tree<-read.nexus("Tree.tre")
 
 # upload data 
-data  <- read.csv("Table_vFinal.csv", row.names = 1) 
+data  <- read.csv("DataTable.csv", row.names = 1) 
 datum <- as.data.frame(cbind(rownames(data), data[,13]), row.names = FALSE) #select the column with the trait of interest
 datum <- datum[complete.cases(datum), ]
 
