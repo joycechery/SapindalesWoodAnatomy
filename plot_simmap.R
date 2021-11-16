@@ -1,3 +1,6 @@
+#####this is the function being use to plot density plot + pie chart  
+###written by Dr. Mike May 2021
+
 plot_simmap = function(time_tree, tree, data, simmaps, states, colors, nt=1001, show.tip.label=FALSE, edge.width=0, plot_pie=TRUE, pie_size=1.5, label.offset=0, label.cex=1, lwd=1, ...) {
 
     # compute dt
