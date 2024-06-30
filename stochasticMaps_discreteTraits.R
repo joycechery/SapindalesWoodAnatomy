@@ -1,5 +1,5 @@
-#function to computer posterior probabilities at the nodes (L44-52) by liam revell from http://blog.phytools.org/2012/12/plotting-node-piecharts-on-top-of.html
-#function to plot simmaps and node posterior probabilities (L71-180) by Dr. Michael May (UC Berkeley)
+#function to computer posterior probabilities at the nodes (L38-47) by liam revell from http://blog.phytools.org/2012/12/plotting-node-piecharts-on-top-of.html
+#function to plot simmaps and node posterior probabilities (L50-59) by Dr. Michael May (UC Berkeley)
 
 library(phytools)
 library(grDevices)
@@ -47,7 +47,7 @@ XX<-sapply(simmap.trees,foo)
 pies<-t(apply(XX,1,function(x,levels,Nsim) summary(factor(x,levels))/Nsim,levels=states,Nsim=1000))
 
 #generate summary of stochastic maps with pies of posterior at nodes..
-#see below (line 72) for plot_simmap function
+source("plot_simmap.R")
 
 plot_simmap(time_tree = simmap.trees[[1]], 
             tree = simmap.trees[[1]], 
